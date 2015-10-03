@@ -15,14 +15,14 @@ import iansLibrary.data.structures.tree.exceptions.MultiIndexesForValueException
  */
 public class Node<E> implements Comparable<Node<E>>{
 
-	protected int depth;
+	public int depth;
 	public Tree<E> hostTree;
 	protected Integer nodeLimit;
-	protected Node<E> parent;
-	protected TreePath pathToThis;
-	protected E value;
+	public Node<E> parent;
+	public TreePath pathToThis;
+	public E value;
 	
-	protected ArrayList<Node<E>> children = new ArrayList<Node<E>>();
+	public ArrayList<Node<E>> children = new ArrayList<Node<E>>();
 	
 	public Node(Node<E> parent, Integer limit, Tree<E> hostTree, E value){
 		this.parent = parent;
