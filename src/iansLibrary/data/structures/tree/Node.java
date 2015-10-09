@@ -13,9 +13,9 @@ import iansLibrary.data.structures.tree.exceptions.MultiIndexesForValueException
  * @project Tree
  * @todo TODO
  */
-public class Node<E> implements Comparable<Node<E>>{
+public class Node<E>{
 
-	public int depth;
+	private int depth;
 	public Tree<E> hostTree;
 	protected Integer nodeLimit;
 	public Node<E> parent;
@@ -29,9 +29,14 @@ public class Node<E> implements Comparable<Node<E>>{
 		this.nodeLimit = limit;
 		this.hostTree = hostTree;
 		this.value = value;
+		System.out.println("creating");
+		System.out.println(this.parent.pathToThis);
 		this.pathToThis = this.parent.pathToThis.copy();
+		System.out.println(this.pathToThis);
 		this.pathToThis.push(this.parent.children.size());
+		System.out.println(this.pathToThis);
 		this.depth = this.pathToThis.size() - 1;
+		System.out.println(this.depth);
 	}
 	
 	public Node(Integer limit, Tree<E> hostTree, E value){
@@ -43,6 +48,18 @@ public class Node<E> implements Comparable<Node<E>>{
 		this.pathToThis = new TreePath();
 		this.pathToThis.push(-1);
 		this.depth = 0;
+	}
+	
+	public Node(){
+		
+	}
+	
+	public int getDepth(){
+		return this.depth;
+	}
+	
+	public void setDepth(int d){
+		this.depth = d;
 	}
 	
 	public int indexInChildrenOf(Node<E> val) throws MultiIndexesForValueException{
@@ -122,20 +139,6 @@ public class Node<E> implements Comparable<Node<E>>{
 		if(this.hostTree.allStorage.keySet().size() > this.hostTree.getDepth()){
 			this.hostTree.incrementDepth();
 		}
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(Node<E> o) {
-		try {
-			throw new Exception("You must create a custom definition of the method compareTo in Node");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return 0;
 	}
 	
 	public String childrenToString(){

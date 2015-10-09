@@ -18,6 +18,8 @@ import iansLibrary.data.structures.tree.TreePath;
 public class TestMain {
 
 	public static void test(){
+		
+		System.out.println("STACK");
 		Stack<Integer> stack = new Stack<Integer>();
 		stack.insert(1);
 		stack.insert(2);
@@ -28,6 +30,8 @@ public class TestMain {
 		System.out.println(stack.top());
 		System.out.println(stack.toString());
 		
+
+		System.out.println("QUEUE");
 		Queue<Integer> queue = new Queue<Integer>();
 		queue.push(1);
 		queue.push(2);
@@ -38,12 +42,15 @@ public class TestMain {
 		System.out.println(queue.peek());
 		System.out.println(queue.toString());
 		
+
+		System.out.println("TREE PATH");
 		TreePath path = new TreePath();
 		path.push(0);
 		path.push(3);
 		path.push(2);
 		path.push(6);
 		System.out.println(path.toString());
+		System.out.println(path.copy());
 		
 		path.poll();
 		System.out.println(path.toString());
@@ -51,6 +58,8 @@ public class TestMain {
 		path.reset();
 		System.out.println(path.toString());
 		
+
+		System.out.println("TREE");
 		Tree<Integer> tree = new Tree<Integer>();
 		tree.setAnchor(null, tree, 0);
 		tree.anchor.addChild(new Node<Integer>(tree.anchor, null, tree, 1));

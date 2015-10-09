@@ -52,9 +52,12 @@ public class TreePath extends Queue<Integer>{
 	
 	public TreePath copy(){
 		TreePath val = new TreePath();
+		System.out.println(this.size());
 		for(int i = 0; i < this.size(); i ++){
+			System.out.println(i);
 			val.storage.add(i, this.storage.get(i));
 		}
+		System.out.println(val);
 		return val;
 	}
 	
@@ -97,5 +100,19 @@ public class TreePath extends Queue<Integer>{
 		path.reset();
 		this.reset();
 		return val;
+	}
+	
+	public boolean equals(TreePath o){
+		if(this.storage.size() != o.size()){
+			return false;
+		}
+		for(int i = 0; i < this.storage.size(); i ++){
+			Integer step = this.storage.get(i);
+			Integer otherStep = o.storage.get(i);
+			if(step.intValue() != otherStep.intValue()){
+				return false;
+			}
+		}
+		return true;
 	}
 }
