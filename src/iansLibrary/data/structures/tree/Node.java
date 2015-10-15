@@ -29,14 +29,9 @@ public class Node<E>{
 		this.nodeLimit = limit;
 		this.hostTree = hostTree;
 		this.value = value;
-		System.out.println("creating");
-		System.out.println(this.parent.pathToThis);
 		this.pathToThis = this.parent.pathToThis.copy();
-		System.out.println(this.pathToThis);
 		this.pathToThis.push(this.parent.children.size());
-		System.out.println(this.pathToThis);
 		this.depth = this.pathToThis.size() - 1;
-		System.out.println(this.depth);
 	}
 	
 	public Node(Integer limit, Tree<E> hostTree, E value){

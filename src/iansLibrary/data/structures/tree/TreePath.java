@@ -15,11 +15,11 @@ import iansLibrary.data.structures.Queue;
  */
 public class TreePath extends Queue<Integer>{
 	
-	private Queue<Integer> backup;
+	protected Queue<Integer> backup;
 	
 	public TreePath(){
 		super();
-		this.backup = new TreePath(true);
+		this.backup = new Queue<Integer>();
 	}
 	
 	public TreePath(boolean backup){
@@ -45,19 +45,14 @@ public class TreePath extends Queue<Integer>{
 	
 	public void push(Integer val){
 		super.push(val);
-		if(this.backup != null){
-			this.backup.push(val);
-		}
+		this.backup.push(val);
 	}
 	
 	public TreePath copy(){
 		TreePath val = new TreePath();
-		System.out.println(this.size());
 		for(int i = 0; i < this.size(); i ++){
-			System.out.println(i);
-			val.storage.add(i, this.storage.get(i));
+			val.push(this.storage.get(i));
 		}
-		System.out.println(val);
 		return val;
 	}
 	
