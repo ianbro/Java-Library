@@ -11,8 +11,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import kirkModels.orm.queries.Query;
-
 public final class ObjectParser {
 	
 	public static <T extends JSONMappable> JSONObject objectToJSON(T object) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, ClassNotFoundException {
@@ -21,9 +19,6 @@ public final class ObjectParser {
 		json.put("type", object.getClass().getName());
 		
 		int i = 0;
-		if (object instanceof Query) {
-			i = 1;
-		}
 		while (i < object.getConstructorFieldOrder().length) {
 			Field f = null;
 			try{

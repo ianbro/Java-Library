@@ -10,11 +10,6 @@ import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import kirkModels.config.Settings;
-import kirkModels.fields.ManyToManyField;
-import kirkModels.orm.Model;
-import kirkModels.orm.queries.Query;
-
 public final class JSONClassMapping {
 		
 		public static Object jsonFieldToObject(String key, Object jsonVal) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -53,11 +48,6 @@ public final class JSONClassMapping {
 		public static Object jsonObjectToObject(JSONObject jsonVal) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 			Object toReturn = null;
 //			System.out.println(jsonVal);
-			
-			//figure out how to see if a class is a subclass of Query
-			if (Query.class.isAssignableFrom(Class.forName((String) jsonVal.get("type")))) {
-				jsonVal.put("1#java.lang.String#_dbName", Settings.database.dbName);
-			}
 			
 			String className = (String) jsonVal.get("type");
 			Object[] paramValues = new Object[jsonVal.keySet().size()-1];

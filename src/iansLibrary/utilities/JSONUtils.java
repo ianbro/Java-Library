@@ -1,9 +1,15 @@
 package iansLibrary.utilities;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-public abstract class JSONFormat {
+public abstract class JSONUtils {
 
 	public static String formatJSON(Object jsonTemp, int level) {
 		String jsonString = "";
@@ -89,6 +95,18 @@ public abstract class JSONFormat {
 		}
 		
 		return jsonString;
+	}
+	
+	public static JSONObject json(String jsonString) throws ParseException{
+		JSONObject jsonObject = null;
+		JSONParser parser = new JSONParser();
+		jsonObject = ((JSONObject) parser.parse(jsonString));
+		return jsonObject;
+	}
+	
+	public static JSONObject json(File jsonFile) throws FileNotFoundException, ParseException{
+		Scanner jsonReader = new Scanner(jsonFile).useDelimiter("\\A");
+		return json(jsonReader.next());
 	}
 
 }

@@ -15,12 +15,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import iansLibrary.utilities.JSONUtils;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-
-import kirkModels.config.Settings;
-import kirkModels.fields.SavableField;
-import kirkModels.utils.Utilities;
 
 public class MetaDatabase {
 
@@ -51,7 +49,7 @@ public class MetaDatabase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JSONObject databaseMap = ((JSONObject)Utilities.json(configReader.next()).get("databases"));
+		JSONObject databaseMap = ((JSONObject)JSONUtils.json(configReader.next()).get("databases"));
 		
 		configReader.close();
 		
@@ -96,7 +94,7 @@ public class MetaDatabase {
 	 * @throws SQLException
 	 */
 	public ArrayList<MetaTable> getTables() throws SQLException {
-		ResultSet tables = this.metaData.getTables(null, Settings.database.schema, null, null);
+		ResultSet tables = this.metaData.getTables(null, this.schema, null, null);
 		HashSet<String> names = new HashSet<String>();
 		ArrayList<MetaTable> metaTables = new ArrayList<MetaTable>();
 		
