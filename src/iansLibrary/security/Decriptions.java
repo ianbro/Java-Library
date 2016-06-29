@@ -22,6 +22,10 @@ public abstract class Decriptions {
 	 * @return
 	 */
 	public static String decript(String str){
+		if (str.equals("")) {
+			return "";
+		}
+		
 		String finalString = "";
 		String tempString = "";
 		char[] strArray;
