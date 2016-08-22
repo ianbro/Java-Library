@@ -15,7 +15,7 @@ import iansLibrary.data.structures.tree.TreePath;
  * @project Tree
  * @todo TODO
  */
-public class TestMain {
+public class TreeTests {
 
 	public static void test(){
 		
