@@ -28,6 +28,14 @@ public abstract class FlatListSearch {
 	 * @return
 	 */
 	public static <E extends Comparable<E>> int binarySearch(List<E> data, E target) {
+		
+		/*
+		 * If the data is empty, return -1 fornot found.
+		 */
+		if (data.size() < 1) {
+			return -1;
+		}
+		
 		/*
 		 * This method is not the core of the logic. This is a wrapper
 		 * method for calling binSearchNextComparison with an initial

@@ -13,6 +13,7 @@ import java.util.ListIterator;
 
 import iansLibrary.data.structures.tree.Node;
 import iansLibrary.data.structures.tree.Tree;
+import iansLibrary.data.structures.tree.TreePath;
 
 /**
  * <p>
@@ -62,6 +63,17 @@ public class SequentialTreeSearch<S extends Comparable<S>, E extends List<S>> {
 		 */
 		public boolean isEndPoint = false;
 		
+		public SequenceStep(){};
+		
+		public SequenceStep(Node<S> parent, Integer limit, Tree<S> hostTree, S value){
+			super(parent, limit, hostTree, value);
+		}
+		
+		public SequenceStep(Integer limit, Tree<S> hostTree, S value){
+			//constructor for anchor node
+			super(limit, hostTree, value);
+		}
+		
 		/**
 		 * Returns this.children as type java.util.ArrayList<SequenceStep>
 		 * instead of java.util.ArrayList<Node<E>>.
@@ -84,7 +96,11 @@ public class SequentialTreeSearch<S extends Comparable<S>, E extends List<S>> {
 	}
 	
 	public SequentialTreeSearch(Collection<E> _data) {
-		
+		this.data = new Tree<S>();
+	}
+	
+	public SequentialTreeSearch() {
+		this.data = new Tree<S>();
 	}
 	
 	/**
@@ -114,7 +130,7 @@ public class SequentialTreeSearch<S extends Comparable<S>, E extends List<S>> {
 	public void addData(E _item, SequenceStep _startFrom) {
 		SequenceStep currentStep = null;
 		if (_startFrom == null) {
-			currentStep = (SequentialTreeSearch<S, E>.SequenceStep) this.data.anchor;
+			currentStep = new SequenceStep(null, this.data, _item.get(0));
 		} else {
 			currentStep = _startFrom;
 		}
@@ -136,9 +152,9 @@ public class SequentialTreeSearch<S extends Comparable<S>, E extends List<S>> {
 				 */
 				ListIterator<S> unusedSubItems = _item.listIterator(index);
 				while(unusedSubItems.hasNext()) {
-					Node<S> toAdd = new Node<S>(stepToAddTo, -1, this.data, unusedSubItems.next());
+					SequenceStep toAdd = new SequenceStep(stepToAddTo, -1, this.data, unusedSubItems.next());
 					stepToAddTo.addChild(toAdd);
-					stepToAddTo = (SequentialTreeSearch<S, E>.SequenceStep) toAdd;
+					stepToAddTo = toAdd;
 				}
 				stepToAddTo.isEndPoint = true;
 				break;
